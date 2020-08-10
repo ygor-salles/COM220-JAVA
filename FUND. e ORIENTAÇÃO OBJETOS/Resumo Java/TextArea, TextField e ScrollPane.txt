@@ -1,0 +1,59 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package testatext;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+/**
+ *
+ * @author rafael
+ */
+public class TestaText extends JFrame implements ActionListener {
+
+    JTextField textField;
+    JTextArea textArea;
+    JScrollPane scrollPane;
+
+    public TestaText() {
+        super("Testa text field e text area");
+
+        // Cria o textfield e adiciona o listener
+        textField = new JTextField(20);
+        textField.addActionListener(this);
+// Cria a textarea, seta a borda e adiciona o scrollpane
+        textArea = new JTextArea("");
+        textArea.setBorder(BorderFactory.createEtchedBorder());
+        scrollPane = new JScrollPane(textArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+   
+// Adiciona os componentes ao painel
+        JPanel panel = new JPanel(new BorderLayout(5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(textField, BorderLayout.PAGE_END);
+
+        this.add(panel);
+        this.setSize(300, 200);
+        //this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String text = textField.getText();
+        textArea.append(text + "\n");
+        textField.setText("");
+    }
+
+    public static void main(String[] args) {
+        new TestaText();
+    }
+}

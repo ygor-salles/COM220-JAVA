@@ -1,0 +1,4 @@
+1 2 3 testando. Esse é um teste para a aula de
+COM220.
+Vamos agora analisar as palavras no plural. Uma
+maçã, duas maçãs. Uma banana, duas bananas.

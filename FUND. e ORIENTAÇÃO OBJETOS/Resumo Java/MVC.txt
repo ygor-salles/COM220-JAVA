@@ -1,0 +1,24 @@
+----------------LIMITE----------------
+private Controle controlle;
+
+public Limite(Controle c) {
+        this.controller = c;
+}
+
+----------------CONTROLE----------------
+private Limite limite;
+
+public Controle() {
+        try {
+            recupera();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        objLimiteAluno = new LimiteAluno(this);
+}
+
+Função de cadastrar colocar o "grava()"
+
+public static void main(String[] args) {
+        new Controle();
+}

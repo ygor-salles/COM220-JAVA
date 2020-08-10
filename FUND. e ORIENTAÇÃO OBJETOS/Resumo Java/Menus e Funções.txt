@@ -1,0 +1,166 @@
+//CRIAR ARRAYLISTS E VECTORS
+
+    private ArrayList<Sessao> sessaoConv = new ArrayList<>();
+    private Vector listaSessao = new Vector();
+    
+    public void addConvenio(String nome, String endereco, String nomeC, String nro) {
+        Convenio c = new Convenio(nome, endereco, nomeC, nro);
+        listaConvenio.add(c);
+        }
+        
+//MENU
+
+    private JMenu inserirPaciente, inserirSessao, imprimirFicha, faturamento;
+    private JMenuItem inserirConvenio, inserirParticular, sessaoConvenio, sessaoPart, fichaConv, fichaPart, fatTotal;
+    private JMenuBar menubar;
+    
+    public Aplicacao() {
+        super("");
+        
+        //CRIAR MENU
+        inserirPaciente = new JMenu("Inserir Paciente");
+        inserirSessao =  new JMenu("Inserir Sessão");
+        
+        
+        //CRIAR ITENS DO MENU
+        //Paciente
+        inserirConvenio = new JMenuItem("Convênio");
+        inserirConvenio.addActionListener(this);
+        
+        //Sessao
+        sessaoConvenio = new JMenuItem("Convênio");
+        sessaoConvenio.addActionListener(this);
+        
+        //ADICIONAR ITENS AO MENU
+        inserirPaciente.add(inserirConvenio);
+        inserirSessao.add(sessaoConvenio);
+        
+        //CRIAR JMENUBAR E ADICIONAR SUBMENUS
+        menubar = new JMenuBar();
+        menubar.add(inserirPaciente);
+
+        BoxLayout box = new BoxLayout(menubar, BoxLayout.X_AXIS);
+        //FlowLayout box = new FlowLayout(FlowLayout.LEFT, 10, 10);
+        menubar.setLayout(box);
+        
+        setVisible(true);
+        setSize(400,400);
+        setJMenuBar(menubar);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+//FUNÇÃO MAIN
+    public static void main(String args[]) {
+        new Aplicacao();
+    }
+    
+//FUNÇÃO DE BUSCA
+    public int verificaCpf(String cpf) {
+        int achou=-1;
+        for(int i=0; i<listaPart.size(); i++){
+            Object o = listaPart.get(i);
+            if(((Particular) o).getCpf().equals(cpf))
+                achou = listaPart.indexOf(o);
+        }
+        return achou;
+    }
+    
+//FUNÇÃO DE GERAR LISTA
+    public String geraFichaPacienteConv(String cartao) {
+        String ficha = "";
+        for(int i=0; i<listaConvenio.size(); i++){
+            Object o = listaConvenio.get(i);
+            if(((Convenio) o).getNroCartao().equals(cartao)){
+                ficha = "Nome do Paciente: "+(((Convenio) o).getNome())+"\nEndereço: "+(((Convenio) o).getEndereço());
+            }
+        }
+        return ficha;
+    }
+    
+//JTEXTAREA
+        area = new JTextArea();
+        area.setBounds(0, 33, 300, 400);
+        area.setEditable(false);
+        area.setText(geraFichaPacienteConv(gnro));
+        
+//COMBOBOX
+        comboBox = new JComboBox();
+        comboBox.addItem(ORTO);
+        comboBox.addItem(RESP);
+        comboBox.addItem(PIL);
+        comboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                if(ae.getSource() == comboBox) {
+                    String gcombo = (String) comboBox.getSelectedItem();
+                    setCombo(gcombo);
+                }
+            }
+        }); //fim combobox
+        
+//ACTION PERFORMED
+    @Override
+        public void actionPerformed(ActionEvent ae) {
+            Object item = ae.getSource();
+            if(item == inserirConvenio) {
+            }
+        }
+        
+//CARD LAYOUT
+        panel = new JPanel();
+        comboBox = new JComboBox();
+        comboBox.addItem("Inserir novo aluno");
+        comboBox.addItem("Listar alunos cadastrados");
+        comboBox.addActionListener(this);
+        panel.add(comboBox);
+
+        JPanel P1 = new JPanel();
+        label1 = new JLabel("Nome do aluno: ");
+        nome = new JTextField(20);
+        label2 = new JLabel("Número de matrícula: ");
+        nro = new JTextField(20);
+        label3 = new JLabel("Data de Nascimento: ");
+        data = new JTextField(20);
+        botaoP1 = new JButton("OK");
+        botaoP1.addActionListener(this);
+        
+        P1.add(label1);
+        P1.add(nome);
+        P1.add(label2);
+        P1.add(nro);
+        P1.add(label3);
+        P1.add(data);
+        P1.add(botaoP1);
+        
+        JPanel P2 = new JPanel();
+        label4 = new JLabel("Alunos cadastrados");
+        imprime = new JTextArea();
+        imprime.setSize(350,350);
+        imprime.setText("");
+        scroll = new JScrollPane(P2, // componente
+        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, // scroll vertical
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
+        
+        P2.add(label4);
+        P2.add(imprime);
+
+        card = new JPanel();
+        card.setLayout(new CardLayout());
+        
+        card.add("Inserir novo aluno", P1);
+        card.add("Listar alunos cadastrados", P2);
+       
+        this.setLayout(new BorderLayout());
+        this.add(panel, BorderLayout.PAGE_START);
+        this.add(card, BorderLayout.CENTER);
+        this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        this.setSize(300, 350);
+        
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if(ae.getSource() == comboBox){
+                String option = (String) comboBox.getSelectedItem();
+                CardLayout layout = (CardLayout) card.getLayout();
+                layout.show(card, option);
+        }}

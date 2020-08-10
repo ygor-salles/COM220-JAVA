@@ -1,0 +1,18 @@
+botao7.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent ae) {
+
+                            if(ae.getSource() == botao7){
+                                int d, m;
+                                String t;
+
+                                d = Integer.parseInt(dia1.getText());
+                                m = Integer.parseInt(mes1.getText());
+                                t = tipo1.getText();
+                                
+                                adicionaSessao(d,m,t);
+                                
+                                panel4.setVisible(false);
+
+                            }
+                        }
+                    });

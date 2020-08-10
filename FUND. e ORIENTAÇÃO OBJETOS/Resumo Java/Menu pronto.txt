@@ -1,0 +1,61 @@
+super("Testa Menu");
+        //this.ctrl = ctrl;
+       
+        mb = new JMenuBar();
+        this.setJMenuBar(mb);
+
+        m = new JMenu("Menu", true);
+        mb.add(m);
+
+        ip = new JMenu("Inserir paciente");
+        ip.setMnemonic(KeyEvent.VK_S);
+        m.add(ip);
+        
+        part = new JMenuItem("Paciente particular");
+        part.setMnemonic(KeyEvent.VK_M);
+        ip.add(part);
+        part.addActionListener(this);
+        
+        conv = new JMenuItem("Paciente convenio");
+        part.setMnemonic(KeyEvent.VK_M);
+        ip.add(conv);
+        conv.addActionListener(this);
+        
+        is = new JMenu("Inserir sessão a um paciente");
+        is.setMnemonic(KeyEvent.VK_S);
+        m.add(is);
+        
+        sessaopart = new JMenuItem("Paciente particular");
+        sessaopart.setMnemonic(KeyEvent.VK_M);
+        is.add(sessaopart);
+        sessaopart.addActionListener(this);
+        
+        sessaoconv = new JMenuItem("Paciente convenio");
+        sessaoconv.setMnemonic(KeyEvent.VK_M);
+        is.add(sessaoconv);
+        sessaoconv.addActionListener(this);
+        
+        ifp = new JMenu("Imprimir ficha de um paciente");
+        ifp.setMnemonic(KeyEvent.VK_S);
+        m.add(ifp);
+        
+        
+        fichapart = new JMenuItem("Paciente particular");
+        fichapart.setMnemonic(KeyEvent.VK_M);
+        ifp.add(fichapart);
+        fichapart.addActionListener(this);
+        
+        fichaconv = new JMenuItem("Paciente convenio");
+        fichaconv.setMnemonic(KeyEvent.VK_M);
+        ifp.add(fichaconv);
+        fichaconv.addActionListener(this);
+        
+        cf = new JMenu("Calcular faturamento de um dado mês");
+        cf.setMnemonic(KeyEvent.VK_S);
+        m.add(cf);
+        cf.addActionListener(this);
+            
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(600, 400);
+        this.setVisible(true);
+}

@@ -1,0 +1,29 @@
+colocar "implements Serializable" na classe que terá o seu conteúdo salvo, classe entidade!
+
+private final String arquivo = "alunos.dat";
+
+public void gravaTurmas() throws Exception {
+        FileOutputStream objFileOS = new FileOutputStream(arquivo);
+        ObjectOutputStream objOS = new ObjectOutputStream(objFileOS);
+        objOS.writeObject(listaTurma);
+        objOS.flush();
+        objOS.close();
+    }
+
+    public void recuperaDisciplinas() throws Exception {
+        File objFile = new File(arquivo);
+        if (objFile.exists()) {
+            FileInputStream objFileIS = new FileInputStream(arquivo);
+            ObjectInputStream objIS = new ObjectInputStream(objFileIS);
+            listaTurma = (ArrayList<Turmas>/Vector) objIS.readObject();
+            objIS.close();
+        }
+    }
+
+//COLOCAR ISSO NA FUNÇÃO QUE QUEIRA FAZER SALVAR ARQUIVO
+	try {
+            gravaTurmas();
+	    // ou recuperaDisciplinas() caso queira recuperar
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
